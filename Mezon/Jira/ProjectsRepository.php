@@ -1,5 +1,5 @@
 <?php
-namespace Mezon\Jira\ProjectsRepository;
+namespace Mezon\Jira;
 
 /**
  * Repository with Jira projects

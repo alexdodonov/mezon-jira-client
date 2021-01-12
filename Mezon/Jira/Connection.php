@@ -1,5 +1,5 @@
 <?php
-namespace Mezon\Jira\Connection;
+namespace Mezon\Jira;
 
 /**
  * Connection to JIRA
