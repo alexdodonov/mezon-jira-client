@@ -19,4 +19,4 @@ More information can be found here:
 
 [dev.to](https://dev.to/alexdodonov)
 
-[Slack](https://join.slack.com/t/mezon-framework/signup?x=x-p1148081653955-1171709616688-1154057706548)
+[Medium](https://medium.com/@gdvever)
