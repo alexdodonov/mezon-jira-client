@@ -1,12 +1,12 @@
 <?php
-namespace Mezon\Jira;
+namespace Mezon\Jira\Issue;
 
 /**
- * Jira project
+ * Jira issue
  *
  * @author gdever
  */
-class Project
+class Issue
 {
 
     /**
@@ -17,11 +17,11 @@ class Project
     private $connection = null;
 
     /**
-     * Project data
+     * Issue data
      *
      * @var object
      */
-    private $project = null;
+    private $issue = null;
 
     /**
      * List of scalar fields
@@ -30,11 +30,7 @@ class Project
      */
     private $scalarFields = [
         'id',
-        'key',
-        'name',
-        'isPrivate',
-        'projectTypeKey',
-        'style'
+        'key'
     ];
 
     /**
@@ -42,14 +38,14 @@ class Project
      *
      * @param Connection $connection
      *            connection to Jira
-     * @param object $project
+     * @param object $issue
      *            data
      */
-    public function __construct(Connection $connection, object $project)
+    public function __construct(Connection $connection, object $issue)
     {
         $this->connection = $connection;
 
-        $this->project = $project;
+        $this->issue = $issue;
     }
 
     /**
@@ -62,7 +58,7 @@ class Project
     public function __get(string $name)
     {
         if (in_array($name, $this->scalarFields)) {
-            return $this->project->$name;
+            return $this->issue->$name;
         }
     }
 }
