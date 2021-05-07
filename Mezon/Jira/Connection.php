@@ -61,4 +61,18 @@ class Connection
     {
         return json_decode($this->connection->sendGetRequest($endpoint), false);
     }
+
+    /**
+     * Method sends POST request to Jira server
+     *
+     * @param string $endpoint
+     *            endpoint to REST method
+     * @param object $data
+     *            data to be sent
+     * @return object result
+     */
+    public function sendPostRequest(string $endpoint, object $data): object
+    {
+        return json_decode($this->connection->sendPostRequest($endpoint, $data), false);
+    }
 }

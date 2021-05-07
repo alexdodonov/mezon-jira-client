@@ -64,5 +64,7 @@ class Project
         if (in_array($name, $this->scalarFields)) {
             return $this->project->$name;
         }
+
+        return null;
     }
 }

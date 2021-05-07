@@ -1,6 +1,8 @@
 <?php
 namespace Mezon\Jira\Issue;
 
+use Mezon\Jira\ConnectionMethods;
+
 /**
  * Jira issue
  *
@@ -9,12 +11,7 @@ namespace Mezon\Jira\Issue;
 class Issue
 {
 
-    /**
-     * Connection to Jira
-     *
-     * @var Connection
-     */
-    private $connection = null;
+    use ConnectionMethods;
 
     /**
      * Issue data
@@ -30,7 +27,18 @@ class Issue
      */
     private $scalarFields = [
         'id',
-        'key'
+        'key',
+        'summary',
+        'description'
+    ];
+
+    /**
+     * Non scalar fields
+     * 
+     * @var array
+     */
+    private $nonScalarFields = [
+        'issuetype'
     ];
 
     /**
@@ -41,11 +49,11 @@ class Issue
      * @param object $issue
      *            data
      */
-    public function __construct(Connection $connection, object $issue)
+    public function __construct(Connection $connection)
     {
-        $this->connection = $connection;
+        $this->setConnection($connection);
 
-        $this->issue = $issue;
+        $this->issue = new \stdClass();
     }
 
     /**
@@ -60,5 +68,30 @@ class Issue
         if (in_array($name, $this->scalarFields)) {
             return $this->issue->$name;
         }
+
+        return null;
+    }
+
+    /**
+     * Method sets field
+     *
+     * @param string $name
+     *            name of the setting field
+     * @param mixed $value
+     *            setting value
+     */
+    public function __set(string $name, $value): void
+    {
+        if (in_array($name, $this->scalarFields)) {
+            $this->issue->$name = $value;
+        }
+    }
+
+    /**
+     * Method creates issue
+     */
+    public function create(): void
+    {
+        $this->getConnection()->send
     }
 }
