@@ -1,6 +1,9 @@
 <?php
 namespace Mezon\Jira\Project;
 
+use Mezon\Jira\ConnectionMethods;
+use Mezon\Jira\Connection;
+
 /**
  * Jira project
  *
@@ -9,12 +12,7 @@ namespace Mezon\Jira\Project;
 class Project
 {
 
-    /**
-     * Connection to Jira
-     *
-     * @var Connection
-     */
-    private $connection = null;
+    use ConnectionMethods;
 
     /**
      * Project data
@@ -47,7 +45,7 @@ class Project
      */
     public function __construct(Connection $connection, object $project)
     {
-        $this->connection = $connection;
+        $this->setConnection($connection);
 
         $this->project = $project;
     }

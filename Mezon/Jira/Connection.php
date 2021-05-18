@@ -1,6 +1,8 @@
 <?php
 namespace Mezon\Jira;
 
+use Mezon\CustomClient\CustomClient;
+
 /**
  * Connection to JIRA
  *
@@ -46,7 +48,8 @@ class Connection
     public function connect(string $url, string $login, string $token): void
     {
         $this->connection = new CustomClient($url, [
-            'Authorization: Basic ' . base64_encode($login . ':' . $token)
+            'Authorization: Basic ' . base64_encode($login . ':' . $token),
+            'Content-type: application/json'
         ]);
     }
 
@@ -67,11 +70,11 @@ class Connection
      *
      * @param string $endpoint
      *            endpoint to REST method
-     * @param object $data
+     * @param array $data
      *            data to be sent
      * @return object result
      */
-    public function sendPostRequest(string $endpoint, object $data): object
+    public function sendPostRequest(string $endpoint, array $data): object
     {
         return json_decode($this->connection->sendPostRequest($endpoint, $data), false);
     }
