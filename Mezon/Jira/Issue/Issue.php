@@ -225,7 +225,5 @@ class Issue
                 'issuetype' => $this->getIssueType()
             ]
         ]);
-
-        // TODO load issue key here
     }
 }
